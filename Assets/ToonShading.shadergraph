@@ -1236,8 +1236,6 @@
         "m_GuidSerialized": "379fd122-1f22-4c4d-ac3a-f01f12f6d560"
     },
     "m_Name": "Toon Ramp Tint",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Toon Ramp Tint",
     "m_DefaultReferenceName": "Toon_Ramp_Tint",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
@@ -1894,8 +1892,6 @@
         "m_GuidSerialized": "fd54b215-3769-4d15-ac9f-b4725bccfb34"
     },
     "m_Name": "Rim Power",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Rim Power",
     "m_DefaultReferenceName": "Rim_Power",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
@@ -2060,8 +2056,6 @@
         "m_GuidSerialized": "8161ec7e-0caa-459b-a2ee-47b5b66b9d95"
     },
     "m_Name": "Toon Ramp Smoothness",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Toon Ramp Smoothness",
     "m_DefaultReferenceName": "Toon_Ramp_Smoothness",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
@@ -2200,8 +2194,6 @@
         "m_GuidSerialized": "95e8eb06-53eb-460b-82a7-6029b09454ef"
     },
     "m_Name": "MainTex",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "MainTex",
     "m_DefaultReferenceName": "MainTex",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
@@ -2686,8 +2678,6 @@
         "m_GuidSerialized": "083f4c3d-a7ee-497c-8655-17bac8bd996b"
     },
     "m_Name": "Toon Ramp Offset",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Toon Ramp Offset",
     "m_DefaultReferenceName": "Toon_Ramp_Offset",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
@@ -3875,8 +3865,6 @@
         "m_GuidSerialized": "790e7648-c9d2-4f81-b96e-972fe2a0368d"
     },
     "m_Name": "Color",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Color",
     "m_DefaultReferenceName": "_Color",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
@@ -3982,8 +3970,6 @@
         "m_GuidSerialized": "966aef50-edca-4745-b3b0-03d536de2172"
     },
     "m_Name": "Mask(R = Emission)",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Mask(R = Emission)",
     "m_DefaultReferenceName": "Mask_R_Emission",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
@@ -4007,8 +3993,6 @@
         "m_GuidSerialized": "dae82ede-b8e1-4e29-8387-791b062ea926"
     },
     "m_Name": "Brightness Rim",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Brightness Rim",
     "m_DefaultReferenceName": "Brightness_Rim",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
