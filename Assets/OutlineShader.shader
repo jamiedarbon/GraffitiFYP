@@ -24,6 +24,9 @@ Shader "Sleepy/OutlinePP"{
             //texture and transforms of the texture
             sampler2D _MainTex;
 
+            //the depth texture
+            sampler2D _CameraDepthTexture;
+
             //the object data that's put into the vertex shader
             struct appdata{
                 float4 vertex : POSITION;
@@ -49,11 +52,12 @@ Shader "Sleepy/OutlinePP"{
 
             //the fragment shader
             fixed4 frag(v2f i) : SV_TARGET{
-            //get source color from texture
-            fixed4 col = tex2D(_MainTex, i.uv);
-            //invert the color
-            col = intValue - col;
-            return col;
+                //get depth from depth texture
+                float depth = tex2D(_CameraDepthTexture, i.uv).r;
+                //linear depth between camera and far clipping plane
+                depth = Linear01Depth(depth);
+
+                return depth;
             }
 
             ENDCG

@@ -5,6 +5,11 @@ public class PostProcessing : MonoBehaviour {
     //material that's applied when doing postprocessing
     [SerializeField]
     private Material postprocessMaterial;
+    
+    private void Start(){
+        Camera cam = GetComponent<Camera>();
+        cam.depthTextureMode = cam.depthTextureMode | DepthTextureMode.Depth;
+    }
 
     //method which is automatically called by unity after the camera is done rendering
     void OnRenderImage(RenderTexture source, RenderTexture destination){
