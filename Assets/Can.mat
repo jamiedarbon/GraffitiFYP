@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Can
-  m_Shader: {fileID: 4800000, guid: 0717917ee9a78eb4491cd021efe50ae9, type: 3}
+  m_Shader: {fileID: 4800000, guid: 7e51950ccb29bf74eaf787afac5c4a3c, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -96,6 +96,8 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
+    - _DepthBias: 2.1
+    - _DepthMult: 1
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -104,6 +106,8 @@ Material:
     - _Glossiness: 13.3
     - _GlossyReflections: 0
     - _Metallic: 0
+    - _NormalBias: 1
+    - _NormalMult: 1
     - _OcclusionStrength: 1
     - _OutValue: 0
     - _Parallax: 0.005
@@ -124,6 +128,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutColor: {r: 0, g: 0, b: 0, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _SpecularColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
