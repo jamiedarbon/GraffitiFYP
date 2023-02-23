@@ -394,6 +394,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   postprocessMaterial: {fileID: 2100000, guid: 74affb6222f62ba43b181aee188cca9e, type: 2}
+  waveSpeed: 0
+  waveActive: 1
 --- !u!1001 &599521096
 PrefabInstance:
   m_ObjectHideFlags: 0
