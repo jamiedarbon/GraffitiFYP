@@ -95,7 +95,7 @@
 			ColorMaterial AmbientAndDiffuse
 			Tags
 			{
-				"Queue" = "Transparent + 1"
+				"Queue" = "Transparent"
 				"LightMode" = "ForwardBase"
 				"PassFlags" = "OnlyDirectional"
 			}

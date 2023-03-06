@@ -89,6 +89,7 @@ public class RayCast : MonoBehaviour
         Debug.Log("PAINTING AAAAAAHA");
         //Circle Brush (setpixel)
         
+        /*
         float k, angle;
         int x1, y1, l;
         for(k = 0; k < 360; k += 0.1f)
@@ -115,7 +116,7 @@ public class RayCast : MonoBehaviour
         }
         //StartCoroutine(rainbow());
         tex.Apply();
-        /*
+        */
         //Circle Brush (setpixels)
         
         if (brushSize > 1)
@@ -146,7 +147,7 @@ public class RayCast : MonoBehaviour
             // set our color at our position - note this will almost never be seen as most textures are rather large, so a single pixel is not going to
             // appear most of the time
             tex.SetPixel((int)pixelUV.x, (int)pixelUV.y, Colour);
-        } */
+        } 
 
         // apply the changes - this is what you were missing
         tex.Apply();
