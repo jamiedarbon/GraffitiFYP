@@ -12,6 +12,8 @@ public class DialogueTrigger : MonoBehaviour
     private DialogueManager dialogueManager;
     private bool interactable;
     private bool talking;
+    [SerializeField]
+    private int questNumber;
 
     private void Start()
     {
@@ -48,6 +50,13 @@ public class DialogueTrigger : MonoBehaviour
     public void TriggerDialogue()
     {
         //Prompt.SetActive(false);
+        //If the current NPC has a quest, activate their associated quest behaviour
+        if (questNumber > 0) { 
+            Debug.Log("Quest Start");
+            GameObject.Find("QuestManager").GetComponent<QuestSystem>().QuestManager(questNumber);
+        }
+        Debug.Log("Quest End");
+        FindObjectOfType<DialogueManager>().actor = this.gameObject;
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
     }
 }

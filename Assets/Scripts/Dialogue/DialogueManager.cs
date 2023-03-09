@@ -17,6 +17,7 @@ public class DialogueManager : MonoBehaviour
 
     public Animator animator;
     public AudioSource voice;
+    public GameObject actor;
 
     //public GameObject mainCamera;
     //public GameObject dialogueCamera;
@@ -25,6 +26,7 @@ public class DialogueManager : MonoBehaviour
     private Queue<Sprite> images;
     private Queue<string> names;
     private Queue<AudioClip[]> sounds;
+    private Queue<int> animations;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +37,7 @@ public class DialogueManager : MonoBehaviour
         images = new Queue<Sprite>();
         names = new Queue<string>();
         sounds = new Queue<AudioClip[]>();
+        animations = new Queue<int>();
     }
 
     public void StartDialogue(Dialogue dialogue)
@@ -51,6 +54,7 @@ public class DialogueManager : MonoBehaviour
         images.Clear();
         names.Clear();
         sounds.Clear();
+        animations.Clear();
 
         foreach (textSection section in dialogue.sections)
         {
@@ -58,6 +62,7 @@ public class DialogueManager : MonoBehaviour
             images.Enqueue(section.image);
             names.Enqueue(section.name);
             sounds.Enqueue(section.sounds);
+            animations.Enqueue(section.anim);
         }
 
         DisplayNextSentence();
@@ -69,6 +74,10 @@ public class DialogueManager : MonoBehaviour
         {
             EndDialogue();
             return;
+        }
+        if (animations.Count > 0)
+        {
+            actor.GetComponent<Animator>().SetInteger("state", animations.Dequeue());
         }
         string sentence = sentences.Dequeue();
         //characterPortrait.sprite = images.Dequeue();

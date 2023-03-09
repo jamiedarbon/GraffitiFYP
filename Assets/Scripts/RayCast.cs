@@ -26,6 +26,8 @@ public class RayCast : MonoBehaviour
     private Color32[] colours;
     private GameObject ColourIndicator;
     public bool canPaint;
+    public bool isPainting = false;
+    public bool paintCheck = false;
 
 
     void Start()
@@ -47,6 +49,7 @@ public class RayCast : MonoBehaviour
         sliderManager();
         brushChange();
         colourChange();
+        isPainting = false;
         Debug.Log("Colour = " + Colour);
         
         if (!Input.GetMouseButton(0))
@@ -87,6 +90,12 @@ public class RayCast : MonoBehaviour
         pixelUV.y *= tex.height;
 
         Debug.Log("PAINTING AAAAAAHA");
+        if(paintCheck)
+        {
+            Debug.Log("PaintCheck");
+            isPainting = true;
+        }
+
         //Circle Brush (setpixel)
         
         /*

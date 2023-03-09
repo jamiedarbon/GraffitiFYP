@@ -10,4 +10,5 @@ public struct textSection
     [TextArea(3, 10)]
     public string sentence;
     public AudioClip[] sounds;
+    public int anim;
 }
