@@ -95,6 +95,7 @@ public class RayCast : MonoBehaviour
             Debug.Log("PaintCheck");
             isPainting = true;
             GameObject.Find("QuestManager").GetComponent<QuestSystem>().tutorial = true;
+            paintCheck = false;
         }
 
         //Circle Brush (setpixel)

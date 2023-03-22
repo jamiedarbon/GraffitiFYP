@@ -12,8 +12,10 @@ public class DialogueTrigger : MonoBehaviour
     private DialogueManager dialogueManager;
     private bool interactable;
     private bool talking;
+    private GameObject actor;
     [SerializeField]
     private int questNumber;
+    public bool facePlayer;
 
     private void Start()
     {
@@ -21,6 +23,7 @@ public class DialogueTrigger : MonoBehaviour
         Debug.Log(dialogueManager.name);
         interactable = false;
         talking = false;
+        actor = gameObject;
     }
 
     public void Update()
@@ -45,11 +48,25 @@ public class DialogueTrigger : MonoBehaviour
         {
             GameObject.Find("DialogueManager").GetComponent<DialogueManager>().DisplayNextSentence();
         }
+
+        if (facePlayer)
+        {
+            //rotate the actor towards the player
+            int modifier = 2;
+            float tempX, tempZ;
+            tempX = actor.transform.rotation.x;
+            tempZ = actor.transform.rotation.z;
+            Vector3 lookPos = Player.transform.position - actor.transform.position;
+            var rotation = Quaternion.LookRotation(lookPos);
+            actor.transform.rotation = Quaternion.Slerp(actor.transform.rotation, rotation, Time.deltaTime * modifier);
+            //actor.transform.rotation = Quaternion.Euler(actor.transform.rotation.x, actor.transform.rotation.y, actor.transform.rotation.z);
+        }
     }
 
     public void TriggerDialogue()
     {
         //Prompt.SetActive(false);
+        facePlayer = true;
         //If the current NPC has a quest, activate their associated quest behaviour
         if (questNumber > 0) { 
             Debug.Log("Quest Start");
