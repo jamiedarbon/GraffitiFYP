@@ -124,7 +124,6 @@ public class DialogueManager : MonoBehaviour
     {
         interrupt = true;
         talking = false;
-        actor.GetComponent<DialogueTrigger>().facePlayer = false;
         animator.SetBool("isOpen", false);
         //mainCamera.SetActive(true);
         //dialogueCamera.SetActive(false);
