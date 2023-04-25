@@ -48,6 +48,10 @@ public class ColourPicker : MonoBehaviour
 
         if (Input.GetKeyDown(colourPickerKey))
         {
+            for (int i = 0; i < player.GetComponent<RayCast>().testArray.Length; i++)
+            {
+                player.GetComponent<RayCast>().testArray[i] = Color.HSVToRGB(fHue, fSat, fVal);
+            }
             player.GetComponent<RayCast>().canPaint = !player.GetComponent<RayCast>().canPaint;
             //Lock cursor to center if not picking colour and unlock it when picking colours to allow for use of UI
             if (Cursor.lockState == CursorLockMode.None && !hasChanged)

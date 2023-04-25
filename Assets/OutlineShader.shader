@@ -3,12 +3,10 @@ Shader "Sleepy/OutlinePP"
     //show values to edit in inspector
     Properties{
         [HideInInspector]_MainTex ("Texture", 2D) = "white" {}
-        _OutlineColor ("Outline Color", Color) = (0,0,0,1)
         _NormalMult ("Normal Outline Multiplier", Range(0,4)) = 1
         _NormalBias ("Normal Outline Bias", Range(1,4)) = 1
         _DepthMult ("Depth Outline Multiplier", Range(0,4)) = 1
         _DepthBias ("Depth Outline Bias", Range(1,4)) = 1
-        _OutLineDepth ("Outline Depth", Range(0,10)) = 1
     }
 
     SubShader{
@@ -35,12 +33,10 @@ Shader "Sleepy/OutlinePP"
             float4 _CameraDepthNormalsTexture_TexelSize;
 
             //variables for customising the effect
-            float4 _OutlineColor;
             float _NormalMult;
             float _NormalBias;
             float _DepthMult;
             float _DepthBias;
-            float _OutlineDepth;
 
             //the object data that's put into the vertex shader
             struct appdata{
@@ -73,9 +69,6 @@ Shader "Sleepy/OutlinePP"
                 DecodeDepthNormal(neighborDepthnormal, neighborDepth, neighborNormal);
                 neighborDepth = neighborDepth * _ProjectionParams.z;
 
-                float depthDifference = baseDepth - neighborDepth;
-                depthOutline = depthOutline + depthDifference;
-
                 float3 normalDifference = baseNormal - neighborNormal;
                 normalDifference = normalDifference.r + normalDifference.g + normalDifference.b;
                 normalOutline = normalOutline + normalDifference;
@@ -103,16 +96,14 @@ Shader "Sleepy/OutlinePP"
                 Compare(depthDifference, normalDifference, depth, normal, i.uv, float2(-1, 0));
 
                 depthDifference = depthDifference * _DepthMult;
-                depthDifference = saturate(depthDifference);
-                depthDifference = pow(depthDifference, _DepthBias);
 
                 normalDifference = normalDifference * _NormalMult;
                 normalDifference = saturate(normalDifference);
                 normalDifference = pow(normalDifference, _NormalBias);
 
-                float outline = normalDifference + depthDifference * _OutlineDepth;
+                float outline = normalDifference + depthDifference;
                 float4 sourceColor = tex2D(_MainTex, i.uv);
-                float4 color = lerp(sourceColor, _OutlineColor, outline);
+                float4 color = lerp(sourceColor, 0, outline);
                 return color;
             }
             ENDCG
