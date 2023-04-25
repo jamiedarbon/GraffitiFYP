@@ -22,7 +22,7 @@ public class RayCast : MonoBehaviour
     private int colourIndex = 0;
     private IEnumerator Coroutine;
     private Color rainbowColour;
-    private Color[] testArray;
+    public Color[] testArray;
     private Color32[] colours;
     private GameObject ColourIndicator;
     public bool canPaint;
@@ -41,9 +41,10 @@ public class RayCast : MonoBehaviour
         ColourIndicator = GameObject.Find("ColourIndicator");
         ColourIndicator.GetComponent<Image>().color = Colour;
         canPaint = true;
+        testArray = new Color[1024];
     }
 
-    void Update()
+    void LateUpdate()
     {
         SizeChanger();
         sliderManager();
@@ -81,20 +82,16 @@ public class RayCast : MonoBehaviour
 
         Debug.Log(rend.sharedMaterial.mainTexture);
         Debug.Log(rend.material.mainTexture);
-        Texture2D writeable = rend.material.mainTexture as Texture2D;
-        if (writeable.name != "|") // windows can NEVER name something this, so we're guaranteed to be in-memory
-        {
-            writeable = duplicateTexture(writeable);
-        }
-        testArray = writeable.GetPixels();
+        Texture2D tex = rend.material.mainTexture as Texture2D;
+        //testArray = tex.GetPixels();
         Vector2 pixelUV = hit.textureCoord;
-        Debug.Log("tex = " + writeable);
+        Debug.Log("tex = " + tex);
         Debug.Log("UV = " + pixelUV);
-        pixelUV.x *= writeable.width;
-        pixelUV.y *= writeable.height;
+        pixelUV.x *= tex.width;
+        pixelUV.y *= tex.height;
 
         Debug.Log("PAINTING AAAAAAHA");
-        if(paintCheck)
+        if (paintCheck)
         {
             Debug.Log("PaintCheck");
             isPainting = true;
@@ -102,9 +99,12 @@ public class RayCast : MonoBehaviour
             paintCheck = false;
         }
 
-        //Circle Brush (setpixel)
-        
+        //SetPixels method
+        tex.SetPixels((int)pixelUV.x - (brushSize / 2), (int)pixelUV.y - (brushSize / 2), brushSize, brushSize, testArray, 0);
+        tex.Apply();
+
         /*
+        //Circle Brush (setpixel)
         float k, angle;
         int x1, y1, l;
         for(k = 0; k < 360; k += 0.1f)
@@ -127,83 +127,10 @@ public class RayCast : MonoBehaviour
                     tex.SetPixel((int)pixelUV.x + l, (int)pixelUV.y + y1, Colour);   
                 }
             }
-            tex.SetPixel((int) pixelUV.x + x1, (int) pixelUV.y + y1, Colour);
         }
         //StartCoroutine(rainbow());
         tex.Apply();
         */
-        //Circle Brush (setpixels)
-        
-        if (brushSize > 1)
-        {
-            // bottom - left aligned, so find new bottom left coordinate then use that as our starting point
-            pixelUV.x = Mathf.Clamp(pixelUV.x - (brushSize / 2), 0, writeable.width);
-            pixelUV.y = Mathf.Clamp(pixelUV.y - (brushSize / 2), 0, writeable.height);
-
-            // add 1 to our brush size so the pixels found are a neighbour search outward from our center point
-            int maxWidth = (int)Mathf.Clamp(brushSize + 1, 0, writeable.width - pixelUV.x);
-            int maxHeight = (int)Mathf.Clamp(brushSize + 1, 0, writeable.height - pixelUV.y);
-
-            // cache our maximum dimension size
-            int blockDimension = maxWidth * maxHeight;
-
-            // create an array for our colors
-            Color[] colorArray = new Color[blockDimension];
-
-            // fill this with our color
-            for (int x = 0; x < blockDimension; ++x)
-                colorArray[x] = Colour;
-
-            // set our pixel colors
-            writeable.SetPixels((int)pixelUV.x, (int)pixelUV.y, maxWidth, maxHeight, colorArray);
-        }
-        else
-        {
-            // set our color at our position - note this will almost never be seen as most textures are rather large, so a single pixel is not going to
-            // appear most of the time
-            writeable.SetPixel((int)pixelUV.x, (int)pixelUV.y, Colour);
-        }
-
-        // apply the changes - this is what you were missing
-        writeable.Apply();
-        rend.material.mainTexture = writeable;
-        /*GL.PushMatrix();
-        GL.LoadOrtho();
-        Graphics.DrawTexture(
-            new Rect(0, 0, 1, 1),
-            myTexture);
-        GL.PopMatrix();*/
-    }
-
-    Texture2D duplicateTexture(Texture2D source)
-    {
-        RenderTexture renderTex = RenderTexture.GetTemporary(
-                    source.width,
-                    source.height,
-                    0,
-                    RenderTextureFormat.Default,
-                    RenderTextureReadWrite.Linear);
-
-        Graphics.Blit(source, renderTex);
-        RenderTexture previous = RenderTexture.active;
-        RenderTexture.active = renderTex;
-        Texture2D readableText = new Texture2D(source.width, source.height);
-        readableText.ReadPixels(new Rect(0, 0, renderTex.width, renderTex.height), 0, 0);
-        readableText.Apply();
-        RenderTexture.active = previous;
-        RenderTexture.ReleaseTemporary(renderTex);
-        readableText.name = "|";
-        return readableText;
-    }
-
-    private void OnPostRender()
-    {
-        GL.PushMatrix();
-        GL.LoadOrtho();
-        Graphics.DrawTexture(
-            new Rect(0, 0, 1, 1),
-            myTexture);
-        GL.PopMatrix();
     }
 
     public void brushChange()
@@ -308,7 +235,7 @@ public class RayCast : MonoBehaviour
             }
         } else if (Input.GetKey(KeyCode.P))
         {
-            if (brushSize < 50)
+            if (brushSize < 32)
             {
                 brushSize++;
             }
