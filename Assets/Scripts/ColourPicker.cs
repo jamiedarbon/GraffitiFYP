@@ -39,6 +39,8 @@ public class ColourPicker : MonoBehaviour
         fSat = mSat.value;
         fVal = mVal.value;
 
+        //Debug.Log("mHue = " + mHue.value);
+
         player.GetComponent<RayCast>().Colour = Color.HSVToRGB(fHue, fSat, fVal);
         if (GameObject.Find("Container").activeSelf)
         {

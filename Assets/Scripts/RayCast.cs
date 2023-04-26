@@ -26,6 +26,8 @@ public class RayCast : MonoBehaviour
     private Color32[] colours;
     private GameObject ColourIndicator;
     public bool canPaint;
+    public bool bannerCheck = false;
+    public bool bannerCheck2 = false;
     public bool isPainting = false;
     public bool paintCheck = false;
 
@@ -96,6 +98,25 @@ public class RayCast : MonoBehaviour
             Debug.Log("PaintCheck");
             isPainting = true;
             GameObject.Find("QuestManager").GetComponent<QuestSystem>().tutorial = true;
+        }
+
+        if (bannerCheck)
+        {
+            Debug.Log("BannerCheck = " + hit.transform.gameObject);
+            Debug.Log("Comp = " + GameObject.Find("Banner"));
+            if(hit.transform.gameObject == GameObject.Find("Cube.003"))
+            {
+                GameObject.Find("QuestManager").GetComponent<QuestSystem>().banner = true;
+            }
+        }
+
+        if (bannerCheck2)
+        {
+            GameObject.Find("QuestManager").GetComponent<QuestSystem>().banner = false;
+            if (hit.transform.gameObject == GameObject.Find("Cube.003") && ((GetComponent<ColourPicker>().mHue.value > 0.9) || (GetComponent<ColourPicker>().mHue.value < 0.1)))
+            {
+                GameObject.Find("QuestManager").GetComponent<QuestSystem>().banner2 = true;
+            }
         }
 
         //SetPixels method
