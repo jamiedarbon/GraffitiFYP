@@ -71,6 +71,7 @@ Material:
     - _NormalMult: 1
     - _OcclusionStrength: 1
     - _OutLineDepth: 10
+    - _OutlineWidth: 0.005
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
