@@ -78,14 +78,13 @@ public class ColourPicker : MonoBehaviour
             //g.transform.GetChild(0).gameObject.SetActive(!g.transform.GetChild(0).gameObject.activeSelf);
             g.GetComponent<Animator>().SetBool("IsActive", !isActive);
             isActive = !isActive;
-            playerMovement.GetComponent<FirstPersonController>().lockCursor =
-                !playerMovement.GetComponent<FirstPersonController>().lockCursor;
-            playerMovement.GetComponent<FirstPersonController>().crosshair =
-                !playerMovement.GetComponent<FirstPersonController>().crosshair;
-            playerMovement.GetComponent<FirstPersonController>().cameraCanMove =
-                !playerMovement.GetComponent<FirstPersonController>().cameraCanMove;
-            playerMovement.GetComponent<FirstPersonController>().playerCanMove =
-                !playerMovement.GetComponent<FirstPersonController>().playerCanMove;
+            if(Cursor.lockState == CursorLockMode.Locked )
+            {
+                Cursor.lockState = CursorLockMode.None;
+            } else if (Cursor.lockState == CursorLockMode.None)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+            }
         }
     }
 }

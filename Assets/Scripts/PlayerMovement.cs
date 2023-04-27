@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 100.0f;
     public float maxSpeed = 10.0f;
     public float jumpHeight = 10.0f;
+    public KeyCode jumpKey = KeyCode.Space;
     public Transform camera;
 
     void Start()

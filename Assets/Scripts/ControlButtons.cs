@@ -25,13 +25,7 @@ public class ControlButtons : MonoBehaviour
 
     public void changeJumpKey()
     {
-        Player.GetComponent<FirstPersonController>().jumpKey = k;
+        Player.GetComponent<PlayerMovement>().jumpKey = k;
         GameObject.Find("Jump Key").GetComponent<TextMeshProUGUI>().SetText("Jump Key - " + k);
-    }
-
-    public void changeSprintKey()
-    {
-        Player.GetComponent<FirstPersonController>().sprintKey = k;
-        GameObject.Find("Sprint Key").GetComponent<TextMeshProUGUI>().SetText("Sprint Key - " + k);
     }
 }
