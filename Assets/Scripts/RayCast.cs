@@ -35,8 +35,6 @@ public class RayCast : MonoBehaviour
     void Start()
     {
         cam = GetComponent<Camera>();
-        Coroutine = rainbow();
-        StartCoroutine(Coroutine);
         rainbowColour = new Color(255, 0, 0, 255);
         colours = new Color32[] { new Color(0, 0, 0,255), new Color(255, 255, 255,255),
             new Color(255, 0, 0,255), new Color(0, 255, 0,255), new Color(0, 0, 255,255)};
@@ -188,61 +186,6 @@ public class RayCast : MonoBehaviour
             Colour = colours[colourIndex];
         }
         ColourIndicator.GetComponent<Image>().color = Colour;
-    }
-    
-    IEnumerator rainbow()
-    {
-        Debug.Log("Colour Called");
-        if (rainbowColour.Equals(new Color(255, 0, 0, 255)))
-        {
-            rainbowColour = new Color(255, 128, 0, 255);
-            Colour = rainbowColour;
-        } else if (rainbowColour.Equals(new Color(255, 128, 0, 255)))
-        {
-            rainbowColour = new Color(255, 255, 0, 255);
-            Colour = rainbowColour;
-        } else if (rainbowColour.Equals(new Color(255, 255, 0, 255)))
-        {
-            rainbowColour = new Color(128, 255, 0, 255);
-            Colour = rainbowColour;
-        } else if (rainbowColour.Equals(new Color(128, 255, 0, 255)))
-        {
-            rainbowColour = new Color(0, 255, 0, 255);
-            Colour = rainbowColour;
-        } else if (rainbowColour.Equals(new Color(0, 255, 0, 255)))
-        {
-            rainbowColour = new Color(0, 255, 128, 255);
-            Colour = rainbowColour;
-        } else if (rainbowColour.Equals(new Color(0, 255, 128, 255)))
-        {
-            rainbowColour = new Color(0, 255, 255, 255);
-            Colour = rainbowColour;
-        } else if (rainbowColour.Equals(new Color(0, 255, 255, 255)))
-        {
-            rainbowColour = new Color(0, 128, 255, 255);
-            Colour = rainbowColour;
-        } else if (rainbowColour.Equals(new Color(0, 128, 255, 255)))
-        {
-            rainbowColour = new Color(0, 0, 255, 255);
-            Colour = rainbowColour;
-        } else if (rainbowColour.Equals(new Color(0, 0, 255, 255)))
-        {
-            rainbowColour = new Color(128, 0, 255, 255);
-            Colour = rainbowColour;
-        } else if (rainbowColour.Equals(new Color(128, 0, 255, 255)))
-        {
-            rainbowColour = new Color(255, 0, 255, 255);
-            Colour = rainbowColour;
-        } else if (rainbowColour.Equals(new Color(255, 0, 255, 255)))
-        {
-            rainbowColour = new Color(255, 0, 128, 255);
-            Colour = rainbowColour;
-        } else if (rainbowColour.Equals(new Color(255, 0, 128, 255)))
-        {
-            rainbowColour = new Color(255, 0, 0, 255);
-            Colour = rainbowColour;
-        }
-        yield return null;
     }
 
     void SizeChanger()

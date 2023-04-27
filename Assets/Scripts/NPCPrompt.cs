@@ -7,10 +7,10 @@ public class NPCPrompt : MonoBehaviour
 {
     [Range(0,50)]
     public int segments = 50;
-    [Range(0,5)]
-    public float xradius = 5;
-    [Range(0,5)]
-    public float yradius = 5;
+    [Range(0,10)]
+    public float xradius = 10;
+    [Range(0,10)]
+    public float yradius = 10;
     LineRenderer line;
     private GameObject player;
     private GameObject playerCamera;
